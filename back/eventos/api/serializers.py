@@ -31,13 +31,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ["username", "first_name", "last_name", "email", "password"]
 
 class EventSerializer(serializers.ModelSerializer):
-    # thumbnail = serializers.SerializerMethodField('encode_thumbnail')
-
-    # def encode_thumbnail(self, event):
-    #      print("TEST",event, flush=True)
-    #      with open(os.path.join(settings.MEDIA_ROOT, event.thumbnail.name), "rb") as image_file:
-    #          return base64.b64encode(image_file.read())
-    
     class Meta:
         model = Event
         fields = ("id","event_name","event_category","event_place","event_address","event_initial_date","event_final_date","event_type","thumbnail")

@@ -31,7 +31,11 @@ class Event(models.Model):
     event_type = models.CharField(max_length=120,
                         choices=TYPE_CHOICES)
     
-    thumbnail = models.ImageField(upload_to="event_thumbnails", default="events_thumbnails/default.png")
+    thumbnail = models.ImageField(upload_to="event_thumbnails",default='event_thumbnails/default.png')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+         ordering = ['created_at']
 
     def __str__(self):
         return self.name
