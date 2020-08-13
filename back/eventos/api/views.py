@@ -68,7 +68,9 @@ class EventDetail(APIView):
         except Event.DoesNotExist:
             raise Http404
         serializer = serializers.EventSerializer(event, data=request.data)
-        print(serializer.is_valid(),flush=True)
-        serializer.save()
-        print(serializer.data,flush=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=
+                status.HTTP_400_BAD_REQUEST)
+        else:
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
