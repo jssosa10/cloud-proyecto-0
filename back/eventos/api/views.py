@@ -20,21 +20,19 @@ class Events(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        """ Get all todos """
+        """ Get all events """
         events = Event.objects.filter(owner=request.user.id)
         serializer = serializers.EventSerializer(events, many=True)
         return Response(serializer.data)
 
     def post(self, request):
-        """ Adding a new todo. """
+        """ Adding a new event. """
         print(request.data)
         serializer = serializers.EventSerializer(data=request.data)
-        ##print(serializer)
         if not serializer.is_valid():
             return Response(serializer.errors, status=
                 status.HTTP_400_BAD_REQUEST)
         else:
-            ##print(data, flush=True)
             owner = request.user
             serializer.save(owner=owner)
         
@@ -50,7 +48,6 @@ class EventDetail(APIView):
         except Event.DoesNotExist:
             raise Http404
         serializer = serializers.EventSerializer(event)
-        #print(serializer.data, flush=True)
         res = serializer.data
         event.delete()
         return Response(res,status=status.HTTP_200_OK)
