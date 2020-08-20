@@ -11,7 +11,7 @@ CATEGORY_CHOICES = [
 
 TYPE_CHOICES = [
     ('VIRTUAL', 'VIRTUAL'),
-    ('SEMINAR', 'SEMINAR')
+    ('PRESENCIAL', 'PRESENCIAL')
 ]
 
 class CustomUser(AbstractUser):
@@ -26,12 +26,12 @@ class Event(models.Model):
     event_place = models.CharField(max_length=120)
     event_address = models.CharField(max_length=120)
 
-    event_initial_date = models.DateTimeField(auto_now_add=True)
-    event_final_date = models.DateTimeField(auto_now_add=True)
+    event_initial_date = models.DateTimeField(auto_now_add=False)
+    event_final_date = models.DateTimeField(auto_now_add=False)
     event_type = models.CharField(max_length=120,
                         choices=TYPE_CHOICES)
     
-    thumbnail = models.ImageField(upload_to="event_thumbnails",default='event_thumbnails/default.png')
+    thumbnail = models.ImageField(upload_to="event_thumbnails")
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

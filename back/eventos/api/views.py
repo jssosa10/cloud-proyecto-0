@@ -67,7 +67,8 @@ class EventDetail(APIView):
             event = Event.objects.get(owner=owner, pk=event_id)
         except Event.DoesNotExist:
             raise Http404
-        serializer = serializers.EventSerializer(event, data=request.data)
+
+        serializer = serializers.EventSerializer(event, data=request.data, partial=True)
         if not serializer.is_valid():
             return Response(serializer.errors, status=
                 status.HTTP_400_BAD_REQUEST)
