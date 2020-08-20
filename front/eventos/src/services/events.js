@@ -1,23 +1,23 @@
 import http from "../http_common";
 
-const getAll = () => {
-  return http.get("/events/");
+const getAll = (token) => {
+  return http(token).get("/events/");
 };
 
-const get = id => {
-  return http.get(`/events/${id}/`);
+const get = (token,id) => {
+  return http(token).get(`/events/${id}/`);
 };
 
-const create = data => {
-  return http.post("/events/", data);
+const create = (token,data) => {
+  return http(token).post("/events/", data);
 };
 
-const update = (id, data) => {
-  return http.put(`/events/${id}/`, data);
+const update = (token,id, data) => {
+  return http(token).put(`/events/${id}/`, data);
 };
 
-const remove = id => {
-  return http.delete(`/events/${id}/`);
+const remove = (token,id) => {
+  return http(token).delete(`/events/${id}/`);
 };
 
 

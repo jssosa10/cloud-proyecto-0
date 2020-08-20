@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core/styles';
 import Editer from './editer';
+import { useAuth } from "../context/auth";
 
 
 const useStyles = makeStyles({
@@ -17,6 +18,7 @@ const useStyles = makeStyles({
 
 const Home = () => {
   const classes = useStyles();
+  const { authToken} = useAuth();
   const [eventos, setEventos] = useState([]);
   const [add, setAdd] = useState(false);
   const [evento, setEvento] = useState();
@@ -25,7 +27,7 @@ const Home = () => {
     retrieveEventos();
   }, []);
   const retrieveEventos = () => {
-    EventsDataService.getAll()
+    EventsDataService.getAll(authToken)
       .then(response => {
         setEventos(response.data);
         console.log(response.data);
@@ -38,7 +40,7 @@ const Home = () => {
     retrieveEventos();
   };
   const deleteEvento = (id) => {
-    EventsDataService.remove(id)
+    EventsDataService.remove(authToken,id)
       .then(response => {
         refreshList();
         console.log(response.data);

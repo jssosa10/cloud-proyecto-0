@@ -17,6 +17,7 @@ import {
     KeyboardTimePicker,
     KeyboardDatePicker,
 } from '@material-ui/pickers';
+import { useAuth } from "../context/auth";
 
 const required = (value) => {
     if (!value) {
@@ -33,6 +34,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const Adder = ({ open, setOpen }) => {
+    const { authToken} = useAuth();
     const form = useRef();
     const checkBtn = useRef();
     const [successful, setSuccessful] = useState(false);
@@ -67,7 +69,7 @@ const Adder = ({ open, setOpen }) => {
             formData.append('event_type', eventType);
             formData.append('thumbnail', eventThumbnail);
             console.log(eventInitialDate.toISOString());
-            EventsDataService.create(formData).then(
+            EventsDataService.create(authToken,formData).then(
                 (response) => {
                     console.log(response);
                     setMessage("created successfully");
