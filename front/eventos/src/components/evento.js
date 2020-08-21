@@ -26,7 +26,7 @@ const EventCard = ({evento, onDelete, onEdit}) => {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={"http://172.24.98.179:8080"+evento.thumbnail}
+          image={"http://172.24.98.179:8081"+evento.thumbnail}
           title={evento.event_name}
         />
         <CardContent>
