@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import ip from '../ip';
 const useStyles = makeStyles({
   root: {
     maxWidth: 420,
@@ -26,7 +26,7 @@ const EventCard = ({evento, onDelete, onEdit}) => {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={"http://172.24.98.179:8081"+evento.thumbnail}
+          image={ip+evento.thumbnail}
           title={evento.event_name}
         />
         <CardContent>

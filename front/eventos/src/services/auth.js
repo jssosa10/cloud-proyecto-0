@@ -1,7 +1,8 @@
 import axios from "axios";
+import ip from "../ip";
 
 
-const API_URL = "http://172.24.98.179:8081/api/";
+const API_URL = `${ip}/api/`;
 
 
 

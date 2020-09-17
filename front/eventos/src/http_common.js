@@ -1,7 +1,8 @@
 import axios from "axios";
+import ip from "./ip";
 
 const http = (token) => axios.create({
-  baseURL: "http://172.24.98.179:8081/api",
+  baseURL: `${ip}/api`,
   headers: {
     "Authorization": "Token "+token
   }
